@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   gerrit:
@@ -11,11 +11,16 @@ services:
     depends_on:
       - postgres
     volumes:
-     - etc-volume:/var/gerrit/etc
-     - git-volume:/var/gerrit/git
-     - index-volume:/var/gerrit/index
-     - cache-volume:/var/gerrit/cache
+     - etc-volume:/var/gerrit/etc:rw
+     - git-volume:/var/gerrit/git:rw
+     - index-volume:/var/gerrit/index:rw
+     - cache-volume:/var/gerrit/cache:rw
 #    entrypoint: java -jar /var/gerrit/bin/gerrit.war init -d /var/gerrit
+volumes:
+  etc-volume: {}
+  git-volume: {}
+  index-volume: {}
+  cache-volume: {}
 
   postgres:
     image: postgres:9.6
@@ -24,4 +29,7 @@ services:
       - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=reviewdb
     volumes:
-      - db-volume:/var/lib/postgresql/data
+      - db-volume:/var/lib/postgresql/data:rw
+volumes:
+  db-volume: {}
+
