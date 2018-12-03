@@ -16,11 +16,6 @@ services:
      - index-volume:/var/gerrit/index:rw
      - cache-volume:/var/gerrit/cache:rw
 #    entrypoint: java -jar /var/gerrit/bin/gerrit.war init -d /var/gerrit
-volumes:
-  etc-volume: {}
-  git-volume: {}
-  index-volume: {}
-  cache-volume: {}
 
   postgres:
     image: postgres:9.6
@@ -32,4 +27,7 @@ volumes:
       - db-volume:/var/lib/postgresql/data:rw
 volumes:
   db-volume: {}
-
+  etc-volume: {}
+  git-volume: {}
+  index-volume: {}
+  cache-volume: {}
